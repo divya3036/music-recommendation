@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Music Recommendation 🎵</h1>
+        <form method="POST">
+            <input type="text" name="song" placeholder="Enter a song name..." required>
+            <button type="submit" id="searchBtn">Search</button>
+        </form>
+
+        <div class="loader" id="loader"></div>
+
+        <div id="results">
+            {% for song in songs %}
+                <div class="song-card">
+                    <img src="{{ song.image }}" alt="Album cover">
+                    <h3>{{ song.name }}</h3>
+                    <p>{{ song.artist }}</p>
+                    <a href="{{ song.url }}" target="_blank">Listen on Spotify</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='javascript.js') }}"></script>
+</body>
+</html>
